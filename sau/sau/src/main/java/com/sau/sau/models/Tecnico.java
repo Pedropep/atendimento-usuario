@@ -2,8 +2,10 @@ package com.sau.sau.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sau.sau.models.dtos.TecnicoDTO;
 import com.sau.sau.models.enums.Perfil;
 
 import jakarta.persistence.Entity;
@@ -27,6 +29,17 @@ public class Tecnico extends Pessoa{
 		addPerfil(Perfil.CLIENTE);
 	}
 	
+	public Tecnico(TecnicoDTO obj) {
+		super();
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.cpf = obj.getCpf();
+		this.email = obj.getEmail();
+		this.senha = obj.getSenha();
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.dataCriacao = obj.getDataCriacao();
+	}
+
 	public List<Chamado> getChamados() {
 		return chamados;
 	}
