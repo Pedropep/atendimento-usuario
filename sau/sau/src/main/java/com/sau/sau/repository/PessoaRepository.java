@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sau.sau.models.Pessoa;
 
-public interface PessoaRespository extends JpaRepository<Pessoa, Integer> {
+public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
 	public Optional<Pessoa> findByCpf(String cpf);
 	public Optional<Pessoa> findByEmail(String email);
 }
